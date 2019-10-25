@@ -1,0 +1,7 @@
+*.pyc
+*.auth
+*.gz
+*~
+*.swp
+*.log
+.cache
