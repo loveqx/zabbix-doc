@@ -22,7 +22,7 @@ import logging
 
 MAX_TIME_OFFSET = 60 * 2
 
-logging.basicConfig(level=logging.INFO)
+#logging.basicConfig(level=logging.INFO)
 log_file, keywords = sys.argv[1], sys.argv[2] 
 
 h = hashlib.md5()
@@ -30,7 +30,7 @@ h.update(log_file + os.getcwd())
 pos_file = os.path.join("/tmp/", "%s_%s.pos" % (h.hexdigest(), os.path.basename(log_file)))
 
 log_st = os.stat(log_file)
-logging.info("log file stat: %s", log_st)
+#logging.info("log file stat: %s", log_st)
 
 log_size = log_st.st_size
 
@@ -44,7 +44,7 @@ else:
     pos_fd = open(pos_file, "w")
     start_pos = log_size
 
-logging.info("write pos file: %s", "%d" % log_size)
+#logging.info("write pos file: %s", "%d" % log_size)
 #将本次的位置写入文件
 pos_fd.seek(0)
 pos_fd.truncate(0)
@@ -55,7 +55,7 @@ pos_fd.close()
 if start_pos > log_size:
     logging.info("start_pos(%d) > log_size(%d), set 0", start_pos, log_size)
     start_pos = 0
-logging.info("log size: %s, start_pos: %s", log_size, start_pos)
+#logging.info("log size: %s, start_pos: %s", log_size, start_pos)
 
 count = {keywords:0}
 #将文件内容寄存行
@@ -68,7 +68,7 @@ re_com = re.compile(keywords)
 #取寄存行的内容，并匹配关键字
 for line in log_fd:
     if re_com.search(line):
-        print line
+        #print line
         count.setdefault(keywords, 0)
         count[keywords] += 1
 logging.info("count: %s", count)
